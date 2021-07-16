@@ -41,7 +41,6 @@ class ActividadRegistracion : AppCompatActivity() {
     }
 
     private fun registrarUsuarioEnFirebase(email: String, passwordIngresada: String) {
-        // TODO-05-AUTHENTICATION
         // Crear el usuario con el email y passwordIngresada
         // Ademas, registrar en CompleteListener el listener registracionCompletaListener definido mas abajo
         auth = Firebase.auth
@@ -64,7 +63,6 @@ class ActividadRegistracion : AppCompatActivity() {
     }
 
     private fun enviarEmailDeVerificacion() {
-        // TODO-05-AUTHENTICATION
         // Enviar mail de verificacion al usuario currentUser
         auth.currentUser!!.sendEmailVerification()
             .addOnCompleteListener { task ->

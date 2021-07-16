@@ -7,10 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import ar.com.develup.tateti.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -29,6 +32,12 @@ class ActividadInicial : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.actividad_inicial)
+
+
+        FirebaseApp.initializeApp(/*context=*/ this)
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+        firebaseAppCheck.installAppCheckProviderFactory(
+            DebugAppCheckProviderFactory.getInstance())
 
         firebaseAnalytics = Firebase.analytics
         auth = Firebase.auth
@@ -52,7 +61,6 @@ class ActividadInicial : AppCompatActivity() {
     }
 
     private fun usuarioEstaLogueado(): Boolean {
-        // TODO-05-AUTHENTICATION
         // Validar que currentUser sea != null
         val currentUser = auth.currentUser
         if(currentUser != null){
@@ -77,7 +85,6 @@ class ActividadInicial : AppCompatActivity() {
     }
 
     private fun configurarDefaultsRemoteConfig() {
-        // TODO-04-REMOTECONFIG
         // Configurar los valores por default para remote config,
         // ya sea por codigo o por XML
         val settings = remoteConfigSettings {
@@ -91,7 +98,6 @@ class ActividadInicial : AppCompatActivity() {
     }
 
     private fun configurarOlvideMiContrasena() {
-        // TODO-04-REMOTECONFIG
         // Obtener el valor de la configuracion para saber si mostrar
         // o no el boton de olvide mi contraseña
 
@@ -164,13 +170,11 @@ class ActividadInicial : AppCompatActivity() {
         }
 
     private fun usuarioVerificoEmail(): Boolean {
-        // TODO-05-AUTHENTICATION
         // Preguntar al currentUser si verifico email
         return auth.currentUser!!.isEmailVerified
     }
 
     private fun desloguearse() {
-        // TODO-05-AUTHENTICATION
         // Hacer signOut de Firebase
         auth.signOut()
     }
