@@ -36,7 +36,6 @@ class ActividadPartida : AppCompatActivity() {
             suscribirseACambiosEnLaPartida()
         }
 
-        auth = Firebase.auth
 
         val botones: MutableList<Button> = LinkedList()
         botones.add(posicion1)
@@ -234,6 +233,8 @@ class ActividadPartida : AppCompatActivity() {
 
     private fun obtenerIdDeUsuario(): String {
         // Obtener el uid del currentUser y retornarlo
+        auth = Firebase.auth
+
         return auth.currentUser!!.uid
     }
 

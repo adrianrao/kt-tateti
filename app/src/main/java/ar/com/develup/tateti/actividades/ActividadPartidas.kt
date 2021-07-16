@@ -13,6 +13,8 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
 import kotlinx.android.synthetic.main.actividad_partidas.*
 
 class ActividadPartidas : AppCompatActivity() {
@@ -30,6 +32,13 @@ class ActividadPartidas : AppCompatActivity() {
         partidas.layoutManager = LinearLayoutManager(this)
         partidas.adapter = adaptadorPartidas
         nuevaPartida.setOnClickListener { nuevaPartida() }
+
+        Firebase.messaging.token.addOnCompleteListener {
+            if (it.isSuccessful) {
+                // En este momento conocemos el valor del token
+                Log.d("Notificaciones", it.result!!)
+            }
+        }
     }
 
     override fun onResume() {

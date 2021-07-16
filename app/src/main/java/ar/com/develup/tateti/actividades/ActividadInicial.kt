@@ -12,8 +12,6 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
-import com.google.firebase.appcheck.FirebaseAppCheck
-import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -33,11 +31,6 @@ class ActividadInicial : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.actividad_inicial)
 
-
-        FirebaseApp.initializeApp(/*context=*/ this)
-        val firebaseAppCheck = FirebaseAppCheck.getInstance()
-        firebaseAppCheck.installAppCheckProviderFactory(
-            DebugAppCheckProviderFactory.getInstance())
 
         firebaseAnalytics = Firebase.analytics
         auth = Firebase.auth
