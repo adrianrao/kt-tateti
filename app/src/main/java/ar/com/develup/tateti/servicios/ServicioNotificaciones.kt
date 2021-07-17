@@ -11,8 +11,6 @@ import ar.com.develup.tateti.actividades.ActividadInicial
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-// TODO-07-NOTIFICATION
-
 class ServicioNotificaciones : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
